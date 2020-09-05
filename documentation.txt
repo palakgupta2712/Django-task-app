@@ -1,0 +1,84 @@
+Phase A - Creating virtual env 
+    1.  >> mkdir Django_task_app
+    2.  >> cd Django_task_app
+    3.  >> virtualenv env
+    4.  >> env\Scripts\activate
+
+Phase B - Setting up Django Project
+
+Installing Django in the virtualenv:
+    >> pip install django
+
+Setting up Django Project 
+    >> django-admin startproject Django_task_app .
+
+        Project Structure:
+            |--Django_task_app
+            |   | -- __init__.py
+            |   | -- asgi.py
+            |   | -- settings.py
+            |   | -- urls.py
+            |   | -- wsgi.py
+            |--manage.py
+            |--env
+
+Next, we need the create a Django application - named as 'todo'.
+A Django application(app) used to perform particular task and are responsible for providing your site desired functionalities.
+
+    >> python manage.py startapp todo
+
+        Project Structure:
+            |-- Django_task_app
+            |    | -- __init__.py
+            |    | -- asgi.py
+            |    | -- settings.py
+            |    | -- urls.py
+            |    | -- wsgi.py
+            |-- manage.py
+            |-- env
+            |-- todo
+                    |--migrations
+                    |-- |-- __init__.py
+                    |-- __init__.py
+                    |-- admin.py
+                    |-- apps.py
+                    |-- models.py
+                    |-- tests.py
+                    |-- views.py
+
+These will create an app named todo in our project.
+Open "settings.py" and find :
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+
+Now add 'todo', in this list.
+
+INSTALLED_APPS = [
+    'todo',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+
+Phase 3 - Running the project
+Make Migrations.
+
+        >> python manage.py migrate
+
+        >> python manage.py runserver
+
+--------------------------X----------------------------
+
+
+Creating database models.
+
