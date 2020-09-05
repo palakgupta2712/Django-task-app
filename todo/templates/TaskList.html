@@ -1,6 +1,25 @@
+{% extends 'base.html'%}
 
-<div>
-    {% for tasklist in task_list %}
-    <li>{{ tasklist.name }}</li> 
-    {% endfor %}
-</div>
+{% block content %}
+    
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">List Name </th>
+            
+          </tr>
+        </thead>
+        <tbody>
+            {% for tasklist in task_list %}
+
+          <tr>
+              <td>{{ tasklist.name }}</td>
+          </tr>
+          
+
+          {% endfor %}
+
+        </tbody>
+      </table>
+
+{% endblock content %}
