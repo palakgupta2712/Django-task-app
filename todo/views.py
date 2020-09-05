@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import TaskList,Task
+from django.views import generic
 from django.views.generic.edit import CreateView
 
 # Create your views here.
@@ -25,4 +26,8 @@ class TaskCreate(CreateView):
     model = Task 
     template_name = "task_new.html"
     fields = "__all__"
+
+class TaskDetail(generic.DetailView):
+    model = Task
+    template_name = 'task_detail.html'
 

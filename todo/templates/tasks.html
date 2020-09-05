@@ -35,7 +35,7 @@
             {% for task in tasks %}
 
         <tr>
-            <td>{{ task.title }}</td>
+            <td><a href="{% url 'task_detail' task.slug  %}"> {{ task.title }} </a> </td>
             <td>{{ task.created_date}}</td>
             <td> {% if task.completed  %}
                     <span class="badge badge-success">Done</span>

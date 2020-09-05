@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse # new
 
 # Create your models here.
 class TaskList(models.Model):
@@ -30,3 +31,6 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self): # new
+        return reverse('task_detail', args=[str(self.slug)])
