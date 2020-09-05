@@ -20,4 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('todo.urls')),
     path('accounts/', include('django.contrib.auth.urls')), # login_update
+    path('accounts/', include('accounts.urls')), # signup_update
+
 ]
