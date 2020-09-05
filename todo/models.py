@@ -16,8 +16,9 @@ class TaskList(models.Model):
 
 class Task(models.Model):
     title = models.CharField(max_length=128)
+    slug = models.SlugField(default="")
     task_list = models.ForeignKey(TaskList, on_delete=models.CASCADE, null=True)
-    created_date = models.DateField(default=timezone.now, blank=True, null=True)
+    created_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
     completed = models.BooleanField(default=False)
     completed_date = models.DateField(blank=True, null=True)
     created_by = models.ForeignKey(
