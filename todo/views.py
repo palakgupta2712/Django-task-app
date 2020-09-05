@@ -1,9 +1,12 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
-from .models import Task
+from django.http import HttpResponse
+from .models import TaskList 
 # Create your views here.
+def index(request):
+    return HttpResponse("Hello, World!")
 
-class TaskList(ListView):
-    queryset = Task.objects.all().order_by('-created_on')
-    template_name = 'TaskList.html'
 
+def tasklist(request):
+    return render(request, 'tasklist.html', {
+        "task_list" : TaskList.objects.all()
+    }) 
