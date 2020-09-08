@@ -7,7 +7,7 @@
         <h5 class="card-header">{{tasks.title}}</h5>
         <div class="card-body">
           <h5 class="card-title">Description</h5>
-          <p class="card-text">{{tasks.description}}</p>
+          <div class="card-text">{{ tasks.description|safe|urlize|linebreaks }}</div>
           {% if tasks.description == '' %}
           <a class="btn btn-primary" href="{% url 'task_edit' tasks.slug %}"> Add Description </a>
           {% endif %}
@@ -31,7 +31,6 @@
 
           <li class="list-group-item"> <strong> Created On : </strong>{{tasks.created_date}}</li>
           <li class="list-group-item"> <strong> Label : </strong>{{tasks.task_list}}</li>
-          <form method="post" action="{% url 'task_toggle_done' tasks.id %}" role="form">
           {% if tasks.completed %}
           <li class="list-group-item"> <strong> Status : </strong>Completed</li>
           {% else %}

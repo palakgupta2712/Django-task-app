@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-
-    <form action="" method="post">
+    <div class="card-header text-center display-4" style="padding:20px;">
+        New Task List
+    </div>
+    <div class="card-body text-center" >
+        <form action="" method="post">
         {%csrf_token%}
         {{form.as_p}}
-        <button type="submit"> ADD </button>
+        <button type="submit" class="btn btn-dark"> ADD </button>
 
     </form>
-
+</div>
 {% endblock content %}

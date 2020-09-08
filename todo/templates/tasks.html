@@ -38,6 +38,7 @@
                         <td><a href="{% url 'task_detail' task.slug  %}" class="text-monospace"> {{ task.title }} </a> </td>
                         <td>{{ task.created_date}}</td>                      
                         <td><a href="{% url 'tasklist_detail' task.task_list.id %}" class="badge badge-primary"> {{ task.task_list}} </a> </td>
+                        
                         <td> {% if task.completed  %}
                             <span class="badge badge-success">Done</span>
                         {% else %}
