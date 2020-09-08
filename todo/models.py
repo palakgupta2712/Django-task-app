@@ -2,6 +2,8 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse # new
+from autoslug import AutoSlugField
+
 
 # Create your models here.
 class TaskList(models.Model):
@@ -17,14 +19,13 @@ class TaskList(models.Model):
 
 class Task(models.Model):
     title = models.CharField(max_length=128)
-    slug = models.SlugField(default="")
+    slug = AutoSlugField(populate_from='title')
     task_list = models.ForeignKey(TaskList, on_delete=models.CASCADE, null=True)
     created_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
     completed = models.BooleanField(default=False)
     completed_date = models.DateField(blank=True, null=True)
     created_by = models.ForeignKey(
         User,
-        blank=True,
         related_name="todo_created_by",
         on_delete=models.CASCADE,
     )

@@ -2,23 +2,22 @@
 
 {% block content %}
     
-    <table class="table table-striped">
-        <thead class="thead-dark">
-            <tr>
-            <th scope="col">List Name </th>
-            
-          </tr>
-        </thead>
-        <tbody>
-            {% for tasklist in task_list %}
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">List Name </th>   
+    </tr>
+  </thead>
+  <tbody>
+    
+    {% for tasklist in tasks_list %}
+    <tr>
+      <td>{{ tasklist.name }}</td>
+      <td>{{object.tasks_list}}</td>
+      <td>{{ list }}</td>
+    </tr>        
 
-          <tr>
-              <td>{{ tasklist.name }}</td>
-          </tr>
-          
-
-          {% endfor %}
-
+        {% endfor %}
         </tbody>
       </table>
 

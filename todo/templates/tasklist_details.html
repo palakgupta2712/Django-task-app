@@ -1,0 +1,10 @@
+<h1>tasklist : {{tasklist.id}} </h1>
+<h2>
+    {{tasklist.slug}}
+    {{tasklist}}
+
+    {% for list in lists %}
+    <li> {{list.title}}
+    </li> 
+    {% endfor %}
+</h2>
