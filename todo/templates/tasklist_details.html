@@ -1,10 +1,58 @@
-<h1>tasklist : {{tasklist.id}} </h1>
+{% extends 'base.html' %}
+{% block content %}
 <h2>
-    {{tasklist.slug}}
-    {{tasklist}}
+    <div class="row">
+        <div class="col-9">
+            <h3 class="display-4 text-monospace"> {{tasklist}} 
+                <button type="button" class="btn btn-danger">
+                    Todo <span class="badge badge-light">{{tasks_todo}}</span>
+                </button>
+                <button class="btn btn-success">
+                    Done <span class="badge badge-light">{{tasks_done}}</span>
+                </button>
+            </h3>
+        </div>
+        <div class="col-3">
+            <div style="margin:20px;">          
+                <a href="{% url 'tasks_add' %}"> 
+                    <button type="button" class="btn btn-primary">Add Task</button>
+                </a>
 
-    {% for list in lists %}
-    <li> {{list.title}}
-    </li> 
-    {% endfor %}
+                <a href="{% url 'tasklist_delete' tasklist.id %}"><span class="material-icons" style="color: red;">delete</span></a>
+
+            </div>
+       </div>
+    </div>
 </h2>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+        <th scope="col">List Name </th>
+        <th scope="col">Created On </th>
+        <th scope="col">Remark </th>
+        <th scope="col">Label </th>
+
+      </tr>
+    </thead>
+    <tbody>
+        {% for task in lists %}
+    <tr>
+        <td><a href="{% url 'task_detail' task.slug  %}"> {{ task.title }} </a> </td>
+        <td>{{ task.created_date}}</td>
+        <td> {% if task.completed  %}
+                <span class="badge badge-success">Done</span>
+            {% else %}
+                <span class="badge badge-danger">Todo</span>
+            {% endif %}
+        </td>
+        <td> 
+            <span class="badge badge-primary">{{task.task_list}}</span>
+            
+        </td>
+    </tr>
+    
+
+      {% endfor %}
+
+{% endblock content %}

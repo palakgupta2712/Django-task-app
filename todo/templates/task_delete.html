@@ -1,0 +1,13 @@
+  
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="conatiner">
+        <h1> Delete Post </h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <p> Do you want to delete "{{ object.title }}" ?</p>
+            <input type="submit" value="Confirm" class="btn btn-dark"/>
+        </form>
+    </div>
+{% endblock content %}

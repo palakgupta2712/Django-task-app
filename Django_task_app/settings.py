@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'todo',
+    'crispy_forms', #forms
     'accounts', #login_update
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -122,5 +124,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = 'home' #login_update
-LOGOUT_REDIRECT_URL = 'home' #login_update
+LOGIN_REDIRECT_URL = 'tasks' #login_update
+LOGOUT_REDIRECT_URL = 'login' #login_update

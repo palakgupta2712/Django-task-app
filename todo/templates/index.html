@@ -9,10 +9,32 @@
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-6">
-                    <h3 class="display-3 text-monospace"> Welcome!</h3>
-                    <a class="btn btn-dark" href="{% url 'login' %}"> Login </a>
-                    <a class="btn btn-dark" href="{% url 'signup' %}"> Signup </a>
+                <div class="col-12">
+                    {% if user.is_authenticated %}
+                        <div class="display-2">
+                            Hi, {{ user.username }}!
+                        </div>
+
+                    {% endif %}
+                    <br>
+                    <div class="display-4">
+                        Welcome to Task Organizer
+                    </div>
+                    <br>
+                    {% if user.is_authenticated %}
+                    <p class="text-monospace">
+                    There {{tasks}} tasks in {{task_list}} Task Groups.
+                    {% endif %}
+                </p>
+                    <br>
+                    {% if user.is_authenticated %}
+
+                    <a class="btn btn-dark" href="{% url 'tasks' %}" style="padding: 10px 190px;"> Task List </a>
+                    {% else %}
+                    <a class="btn btn-dark " href="{% url 'login' %}" style="padding: 10px 190px;"> Login </a>
+                    <a class="btn btn-dark " href="{% url 'signup' %}" style="padding: 10px 190px;"> SignUp </a>
+
+                    {% endif %}
                 </div>
               
             </div>

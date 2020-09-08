@@ -1,24 +1,18 @@
 {% extends 'base.html'%}
-
 {% block content %}
-    
-<table class="table table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">List Name </th>   
-    </tr>
-  </thead>
-  <tbody>
-    
-    {% for tasklist in tasks_list %}
-    <tr>
-      <td>{{ tasklist.name }}</td>
-      <td>{{object.tasks_list}}</td>
-      <td>{{ list }}</td>
-    </tr>        
+  <div class="container" style="padding:20px"> 
+      <div class="card" style="width: 18rem;">
+        <div class="card-header">
+          Task groups
+        </div>
+        {% for tasklist in tasks_list %}
 
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><a href="{% url 'tasklist_detail' tasklist.id %}" > {{ tasklist.name}} </a></li>   
+                    
+        </ul>
         {% endfor %}
-        </tbody>
-      </table>
-
+{{count}}
+      </div>
+    </div>
 {% endblock content %}

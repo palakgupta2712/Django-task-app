@@ -1,3 +1,46 @@
-<h1>
-  {{ object.title }} 
-</h1>
+{% extends 'base.html' %}
+{% block content %}
+<div class="container" style="padding:20px;">
+  <div class="row">
+    <div class="col-7">
+      <div class="card">
+        <h5 class="card-header">{{tasks.title}}</h5>
+        <div class="card-body">
+          <h5 class="card-title">Description</h5>
+          <p class="card-text">{{tasks.description}}</p>
+          {% if tasks.description == '' %}
+          <a class="btn btn-primary" href="{% url 'task_edit' tasks.slug %}"> Add Description </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="col-5">
+      <div class="card" >
+        <div class="card-header">
+            <a class="btn btn-primary" href="{% url 'task_edit' tasks.slug %}"> Edit Task </a>
+            <a href="{% url 'task_delete' tasks.slug %}" class= "btn btn-danger">Delete Task</a>
+
+           
+            {% if tasks.completed %}
+            <a class="btn btn-dark">Move to Todo</a>
+            {% else %}
+            <a class="btn btn-dark">Move to Done</a>
+            {% endif %}
+        </div>
+        <ul class="list-group list-group-flush">
+
+          <li class="list-group-item"> <strong> Created On : </strong>{{tasks.created_date}}</li>
+          <li class="list-group-item"> <strong> Label : </strong>{{tasks.task_list}}</li>
+          <form method="post" action="{% url 'task_toggle_done' tasks.id %}" role="form">
+          {% if tasks.completed %}
+          <li class="list-group-item"> <strong> Status : </strong>Completed</li>
+          {% else %}
+          <li class="list-group-item"> <strong> Status : </strong>Not Completed</li>
+          {% endif %}
+
+        </ul>
+      </div>
+    </div>
+    </div>
+  </div>
+{% endblock content %}
