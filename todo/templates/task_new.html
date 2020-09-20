@@ -1,23 +1,22 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-    <div class=" text-center">
+    <div class="text-center" style="padding:50px;">
         <h1> New Post </h1>
-    <form action="" method="post">
+    <form action="" method="post" class="container" style="padding:50px;">
         {% csrf_token %}
             <label class="text-monospace" style="font-size:x-large">Title</label>
-            <div>{{form.title}}</div>
-            <br>
-            <label class="text-monospace" style="font-size:x-large">Description</label>
-            <div>{{form.description}}</div>
-            <br>
-            <label class="text-monospace" style="font-size:x-large">Task Group</label>
-            <div>{{form.task_list}}</div>
-            <br>
-            <label class="text-monospace" style="font-size:x-large">Completed</label>      {{form.completed}}
-            <br>
+            {{form.title|as_crispy_field}}
           
-        <input type="submit" value="Save" class = "btn btn-dark"/>
+            <label class="text-monospace" style="font-size:x-large">Description</label>
+            {{ form.description|as_crispy_field }}
+         
+            <label class="text-monospace" style="font-size:x-large">Task Group</label>
+            <div>{{form.task_list|as_crispy_field}}</div>
+          
+             {{form.completed|as_crispy_field}}    
+            <input type="submit" value="Save" class = "btn btn-dark"/>
     </form>
     </div>
 {% endblock content %}
