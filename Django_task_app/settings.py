@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-import django_heroku
+import django_on_heroku
 from pathlib import Path
 import os
 
@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_filters',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -129,4 +128,4 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'tasks' #login_update
 LOGOUT_REDIRECT_URL = 'login' #login_update
 
-django_heroku.settings(locals())
+django_on_heroku.settings(locals())
