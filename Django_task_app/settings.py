@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = 'm7r1e-!l&)7kg5!n=50z619h-!47c8)og$mdsl!f0m0(2dq0v('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['blooming-taiga-84091.herokuapp.com', '127.0.0.1']
 
