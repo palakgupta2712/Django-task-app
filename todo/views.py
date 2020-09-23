@@ -22,7 +22,7 @@ def home(request):
     return render(request, 'home.html')
 
 def tasklist(request):
-    lists = Task.objects.filter(task_list=1)
+    lists = Task.objects.all()
     count = lists.count()
     return render(request, 'tasklist.html', {
         "tasks_list" : TaskList.objects.all(),
@@ -33,8 +33,9 @@ def tasklist(request):
 @login_required
 def tasks(request):
     return render(request, 'tasks.html',{
-        "tasks" : Task.objects.all(),
-        "task_group" : TaskList.objects.all(),
+        
+        "tasks" :  Task.objects.filter(created_by=request.user),
+        "task_group" : TaskList.objects.filter(created_by=request.user),
         "tasks_todo" : Task.objects.filter(completed="False").count(),
         "tasks_done" : Task.objects.filter(completed="True").count()
     }) 
@@ -53,7 +54,7 @@ def task_detail(request, slug):
     tasks = Task.objects.get(slug=slug)
     return render(request, 'task_detail.html',{
         "tasks" : tasks
-    })   
+    })
     
 @login_required
 def tasklist_details(request, tasklist_id):
