@@ -36,14 +36,14 @@ def tasks(request):
         
         "tasks" :  Task.objects.filter(created_by=request.user),
         "task_group" : TaskList.objects.filter(created_by=request.user),
-        "tasks_todo" : Task.objects.filter(completed="False").count(),
-        "tasks_done" : Task.objects.filter(completed="True").count()
+        "tasks_todo" : Task.objects.filter(completed="False", created_by=request.user).count(),
+        "tasks_done" : Task.objects.filter(completed="True", created_by=request.user).count()
     }) 
 
 class TaskCreate(LoginRequiredMixin,CreateView):
     model = Task 
     template_name = "task_new.html"
-    fields = ['title', 'description',  'task_list', 'completed']
+    fields = ['title', 'description', 'task_list', 'completed']
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
@@ -79,10 +79,15 @@ class TaskUpdate(LoginRequiredMixin,UpdateView):
             raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
 
+
 class TaskListCreate(LoginRequiredMixin, CreateView):
     model = TaskList 
     template_name = "tasklist_new.html"
-    fields = '__all__'
+    fields = ['name']
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
 
 class TaskListDelete(LoginRequiredMixin,DeleteView):
     model = TaskList
