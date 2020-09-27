@@ -11,7 +11,13 @@ from django.utils import datetime_safe
 class TaskList(models.Model):
     name = models.CharField(max_length=60)
     slug = AutoSlugField(populate_from='name')
-   
+    created_on = models.DateTimeField(default=timezone.now, blank=True, null=True)
+    created_by = models.ForeignKey(
+        User,
+        related_name="tasklist_created_by",
+        on_delete=models.CASCADE,
+    )
+
     def __str__(self):
         return self.name
 
@@ -19,7 +25,7 @@ class TaskList(models.Model):
         return reverse('tasklist_detail', args=[str(self.id)])
     
     class Meta:
-        ordering = ["name"]
+        ordering = ["created_on"]
         verbose_name_plural = "Task Lists"
     
 
