@@ -13,6 +13,8 @@ import django_on_heroku
 from pathlib import Path
 import os
 
+from django.contrib.messages import constants as messages
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -35,6 +37,7 @@ INSTALLED_APPS = [
     'todo',
     'crispy_forms', #forms
     'accounts', #login_update
+    'bootstrap_modal_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -127,5 +130,11 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = 'tasks' #login_update
 LOGOUT_REDIRECT_URL = 'login' #login_update
-
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 django_on_heroku.settings(locals())

@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load crispy_forms_tags %}
+
 
 <div class="card text-center">
     <div class="card-header">
@@ -9,7 +11,7 @@
     <div>
            <form action="" method="post" style="padding:10px;">
             {% csrf_token %}
-            <label class="text-monospace" style="font-size:x-large">Title</label>
+            <!-- <label class="text-monospace" style="font-size:x-large">Title</label>
             <div>{{form.title}}</div>
             <br>
             <label class="text-monospace" style="font-size:x-large">Description</label>
@@ -20,8 +22,8 @@
             <br>
             <label class="text-monospace" style="font-size:x-large">Completed</label>
             {{form.completed}}
-            <br>
-          
+            <br> -->
+            {{ form|crispy }}
             <input type="submit" value="Update" class="btn btn-dark" />
         </form>
     </div>

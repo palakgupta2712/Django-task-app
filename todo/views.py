@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .models import TaskList,Task
 from django.views import generic
@@ -7,6 +7,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin # new
 from django.core.exceptions import PermissionDenied # new
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy # new
+from .forms import TaskForm
+from django.contrib import messages
 
 
 tasks = Task.objects.all()
@@ -15,7 +17,7 @@ tasks = Task.objects.all()
 def index(request):
     return render(request, 'index.html',{
         "tasks" : Task.objects.all().count(),
-        "task_list" : TaskList.objects.all().count(),
+        "task_list" : TaskList.objects.filter(created_by=request.user).count(),
     })
 
 def home(request):
@@ -40,15 +42,25 @@ def tasks(request):
         "tasks_done" : Task.objects.filter(completed="True", created_by=request.user).count()
     }) 
 
-class TaskCreate(LoginRequiredMixin,CreateView):
-    model = Task 
-    template_name = "task_new.html"
-    fields = ['title', 'description', 'task_list', 'completed']
+@login_required
+def TaskCreate(request):
+    form = TaskForm()
 
-    def form_valid(self, form):
-        form.instance.created_by = self.request.user
-        return super().form_valid(form)
+    if request.method == 'POST':
+        print(request.POST)
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.created_by = request.user
 
+            obj.save()
+            messages.success(request, 'Your task added successfully!')
+        else:
+            messages.warning(request, 'Please correct the error below.')
+        return redirect('/task/')
+    context = {'form' : form}
+    return render(request, 'task_new.html', context)
+    
 @login_required
 def task_detail(request, slug):
     tasks = Task.objects.get(slug=slug)
