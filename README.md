@@ -11,3 +11,11 @@ A todo cum task management application in Django.
 - [ ] Done/Not Done
 - [ ] Completed date 
  
+ 
+ ScreenShots:
+ 
+![img](https://imgur.com/yQOyErX.png)
+
+![img](https://imgur.com/lgAM7Pj.png)
+
+![img](https://imgur.com/PIfFISt.png)
