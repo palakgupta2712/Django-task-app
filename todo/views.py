@@ -16,7 +16,7 @@ tasks = Task.objects.all()
 # Create your views here.
 def index(request):
     return render(request, 'index.html',{
-        "tasks" : Task.objects.all().count(),
+        "tasks" : Task.objects.filter(created_by=request.user).count(),
         "task_list" : TaskList.objects.filter(created_by=request.user).count(),
     })
 
